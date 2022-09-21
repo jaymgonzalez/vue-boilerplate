@@ -12,7 +12,20 @@ mediaQuery.addEventListener('change', (e) => {
 </script>
 
 <template>
-  <RouterView />
+  <div class="q-pa-md q-gutter-y-sm">
+    <q-toolbar class="fucsia">
+      <q-btn flat round dense icon="menu" />
+      <q-toolbar-title>VUE CRUD Client</q-toolbar-title>
+    </q-toolbar>
+    <main class="container">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
-<style scoped></style>
+<style>
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+</style>

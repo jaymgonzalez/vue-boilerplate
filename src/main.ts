@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { Quasar } from 'quasar'
+import { VueQueryPlugin } from 'vue-query'
 
 import App from './App.vue'
 import router from './router'
@@ -18,5 +19,6 @@ app.use(router)
 app.use(Quasar, {
   plugins: {}, // import Quasar plugins and add here
 })
+app.use(VueQueryPlugin)
 
 app.mount('#app')
