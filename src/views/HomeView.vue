@@ -1,13 +1,28 @@
 <script setup lang="ts">
 import { useQuery } from 'vue-query'
+import { findAll, type APIError } from '@/lib/API'
+import type { TodoWithId } from '@/types'
 
-const query = useQuery('findAll', api.findAll())
+const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
+  'findAll',
+  () => findAll()
+)
 </script>
+<!-- eslint-disable vue/valid-v-for -->
 
 <template>
   <main>
-    <h1>Hello World!</h1>
-    <q-btn class="fucsia" label="Fuchsia" />
+    <div class="q-pa-md flex flex-center" v-if="isLoading">
+      <q-circular-progress indeterminate rounded size="50px" />
+    </div>
+    <q-banner v-if="error" inline-actions class="text-white bg-red">
+      {{ error.response?.data.message || error.message }}
+    </q-banner>
+    <q-card class="my-card" v-for="todo in data">
+      <q-card-section>
+        {{ todo.content }}
+      </q-card-section>
+    </q-card>
   </main>
 </template>
 
