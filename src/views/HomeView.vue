@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useQuery } from 'vue-query'
+
+const query = useQuery('findAll', api.findAll())
+</script>
 
 <template>
   <main>
