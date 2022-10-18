@@ -24,7 +24,7 @@ mediaQuery.addEventListener('change', (e) => {
 <template>
   <div class="app">
     <q-toolbar class="bg-pink">
-      <q-toolbar-title>VUE CRUD Client</q-toolbar-title>
+      <q-btn flat :to="{ name: 'home' }">VUE CRUD Client</q-btn>
     </q-toolbar>
     <main class="container">
       <RouterView />
