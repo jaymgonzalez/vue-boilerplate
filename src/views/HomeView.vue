@@ -3,6 +3,7 @@ import { useQuery } from 'vue-query'
 import { findAll, type APIError } from '@/lib/API'
 import type { TodoWithId } from '@/types'
 import TodoForm from '@/components/TodoForm.vue'
+import TodoItem from '../components/TodoItem.vue'
 
 const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
   'findAll',
@@ -28,19 +29,12 @@ const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
     >
       <q-linear-progress indeterminate color="pink" />
     </div>
-    <q-card class="my-card" v-for="todo in data">
-      <q-card-section class="q-mb-sm">
-        {{ todo.content }}
-        <q-card-actions class="row justify-end">
-          <q-btn
-            :to="{ name: 'todo', params: { id: todo._id.toString() } }"
-            color="pink-6"
-          >
-            Edit
-          </q-btn>
-        </q-card-actions>
-      </q-card-section>
-    </q-card>
+    <todo-item
+      v-for="todo in data"
+      :key="todo._id.toString()"
+      :todo="todo"
+      class="q-mb-sm"
+    />
   </main>
 </template>
 
