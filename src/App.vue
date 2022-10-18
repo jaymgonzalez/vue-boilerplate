@@ -12,9 +12,8 @@ mediaQuery.addEventListener('change', (e) => {
 </script>
 
 <template>
-  <div class="q-pa-md q-gutter-y-sm">
-    <q-toolbar class="fucsia">
-      <q-btn flat round dense icon="menu" />
+  <div class="app">
+    <q-toolbar class="bg-pink">
       <q-toolbar-title>VUE CRUD Client</q-toolbar-title>
     </q-toolbar>
     <main class="container">
@@ -27,5 +26,9 @@ mediaQuery.addEventListener('change', (e) => {
 .container {
   margin: 0 auto;
   width: 90%;
+}
+.app {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 </style>

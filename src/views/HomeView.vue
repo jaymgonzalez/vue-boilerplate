@@ -13,13 +13,13 @@ const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
 
 <template>
   <main>
-    <div class="q-pa-md flex flex-center" v-if="isLoading">
-      <q-circular-progress indeterminate rounded size="50px" />
-    </div>
     <q-banner v-if="error" inline-actions class="text-white bg-red">
       {{ error.response?.data.message || error.message }}
     </q-banner>
     <todo-form />
+    <div class="q-pa-md flex flex-center" v-if="isLoading">
+      <q-linear-progress indeterminate color="pink" />
+    </div>
     <q-card class="my-card" v-for="todo in data">
       <q-card-section>
         {{ todo.content }}
@@ -28,9 +28,4 @@ const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
   </main>
 </template>
 
-<style>
-.fucsia {
-  background: #ff0080;
-  color: white;
-}
-</style>
+<style></style>

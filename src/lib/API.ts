@@ -10,12 +10,12 @@ export type APIError = AxiosError<ErrorResponse>
 export async function findAll() {
   const { data } = await api.get<TodoWithId[]>('/todos')
   // eslint-disable-next-line no-promise-executor-return
-  // await new Promise((resolve) => setTimeout(resolve, 3000))
+  await new Promise((resolve) => setTimeout(resolve, 3000))
   return data
 }
 
 export async function createOne(todo: Todo) {
   const { data } = await api.post<TodoWithId>('/todos', todo)
-  // await new Promise((resolve) => setTimeout(resolve, 3000))
+  await new Promise((resolve) => setTimeout(resolve, 3000))
   return data
 }
