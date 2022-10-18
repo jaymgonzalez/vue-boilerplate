@@ -4,9 +4,14 @@ import { findAll, type APIError } from '@/lib/API'
 import type { TodoWithId } from '@/types'
 import TodoForm from '@/components/TodoForm.vue'
 
-const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
+const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
   'findAll',
-  () => findAll()
+  findAll,
+  {
+    select(todos) {
+      return todos.slice().reverse()
+    },
+  }
 )
 </script>
 <!-- eslint-disable vue/valid-v-for -->
@@ -17,7 +22,10 @@ const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
       {{ error.response?.data.message || error.message }}
     </q-banner>
     <todo-form />
-    <div class="q-pa-md flex flex-center" v-if="isLoading">
+    <div
+      :style="{ opacity: isFetching ? '1' : '0' }"
+      class="loading q-pa-md flex flex-center"
+    >
       <q-linear-progress indeterminate color="pink" />
     </div>
     <q-card class="my-card" v-for="todo in data">
@@ -28,4 +36,9 @@ const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
   </main>
 </template>
 
-<style></style>
+<style scoped>
+.loading {
+  height: 25px;
+  transition-duration: 500ms;
+}
+</style>
