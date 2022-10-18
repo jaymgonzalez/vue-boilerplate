@@ -9,7 +9,7 @@ export type APIError = AxiosError<ErrorResponse>
 
 async function extractData<T>(promise: Promise<AxiosResponse<T>>) {
   const { data } = await promise
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  // await new Promise((resolve) => setTimeout(resolve, 3000))
   return data
 }
 
