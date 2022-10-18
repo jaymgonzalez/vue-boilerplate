@@ -2,6 +2,7 @@
 import { useQuery } from 'vue-query'
 import { findAll, type APIError } from '@/lib/API'
 import type { TodoWithId } from '@/types'
+import TodoForm from '../components/TodoForm.vue'
 
 const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
   'findAll',
@@ -18,6 +19,7 @@ const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
     <q-banner v-if="error" inline-actions class="text-white bg-red">
       {{ error.response?.data.message || error.message }}
     </q-banner>
+    <todo-form />
     <q-card class="my-card" v-for="todo in data">
       <q-card-section>
         {{ todo.content }}
