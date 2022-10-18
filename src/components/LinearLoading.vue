@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
-type IsFetchingProps = { isFetching: Boolean }
-const props = defineProps<IsFetchingProps>()
+const props = defineProps<{ isFetching: Boolean }>()
 </script>
 
 <template>

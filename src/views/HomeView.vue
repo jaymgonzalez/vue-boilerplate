@@ -30,7 +30,18 @@ const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
       :key="todo._id.toString()"
       :todo="todo"
       class="q-mb-sm"
-    />
+    >
+      <slot>
+        <q-card-actions class="row justify-end">
+          <q-btn
+            :to="{ name: 'todo', params: { id: todo._id.toString() } }"
+            color="pink-6"
+          >
+            Edit
+          </q-btn>
+        </q-card-actions>
+      </slot>
+    </todo-item>
   </main>
 </template>
 
