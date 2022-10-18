@@ -24,3 +24,11 @@ export async function createOne(todo: Todo) {
 export async function findOne(id: string) {
   return extractData(api.get<TodoWithId>(`/todos/${id}`))
 }
+
+export async function updateOne(id: string, todo: Todo) {
+  return extractData(api.put<TodoWithId>(`/todos/${id}`, todo))
+}
+
+export async function deleteOne(id: string) {
+  return extractData(api.delete<TodoWithId>(`/todos/${id}`))
+}

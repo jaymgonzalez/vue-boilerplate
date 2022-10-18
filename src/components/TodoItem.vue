@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { TodoWithId } from '@/types'
-import { defineProps } from 'vue'
 
 const props = defineProps<{ todo: TodoWithId }>()
 </script>
@@ -8,7 +7,7 @@ const props = defineProps<{ todo: TodoWithId }>()
 <template>
   <q-card class="my-card" :key="props.todo._id">
     <q-card-section class="q-mb-sm">
-      {{ props.todo.content }}
+      {{ props.todo.done ? '✅' : '' }}{{ props.todo.content }}
     </q-card-section>
     <slot />
   </q-card>
