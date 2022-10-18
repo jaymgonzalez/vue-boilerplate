@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios'
-import type { ErrorResponse, TodoWithId } from '../types'
+import type { ErrorResponse, Todo, TodoWithId } from '../types'
 
 const api = axios.create({
   baseURL: 'http://localhost:5000/api/v1',
@@ -14,7 +14,7 @@ export async function findAll() {
   return data
 }
 
-export async function createOne() {
-  const { data } = await api.post('/todos')
+export async function createOne(todo: Todo) {
+  const { data } = await api.post<TodoWithId>('/todos', todo)
   return data
 }

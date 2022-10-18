@@ -2,7 +2,7 @@
 import { useQuery } from 'vue-query'
 import { findAll, type APIError } from '@/lib/API'
 import type { TodoWithId } from '@/types'
-import TodoForm from '../components/TodoForm.vue'
+import TodoForm from '@/components/TodoForm.vue'
 
 const { isLoading, error, data } = useQuery<TodoWithId[], APIError>(
   'findAll',
