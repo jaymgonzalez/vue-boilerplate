@@ -16,5 +16,6 @@ export async function findAll() {
 
 export async function createOne(todo: Todo) {
   const { data } = await api.post<TodoWithId>('/todos', todo)
+  // await new Promise((resolve) => setTimeout(resolve, 3000))
   return data
 }
