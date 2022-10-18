@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { useQueryProvider } from 'vue-query'
+
+useQueryProvider({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 const $q = useQuasar()
 const darkQuery = '(prefers-color-scheme: dark)'
