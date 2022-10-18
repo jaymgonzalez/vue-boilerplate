@@ -4,6 +4,7 @@ import { findAll, type APIError } from '@/lib/API'
 import type { TodoWithId } from '@/types'
 import TodoForm from '@/components/TodoForm.vue'
 import TodoItem from '../components/TodoItem.vue'
+import LinearLoading from '../components/LinearLoading.vue'
 
 const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
   'findAll',
@@ -23,12 +24,7 @@ const { isFetching, error, data } = useQuery<TodoWithId[], APIError>(
       {{ error.response?.data.message || error.message }}
     </q-banner>
     <todo-form />
-    <div
-      :style="{ opacity: isFetching ? '1' : '0' }"
-      class="loading q-pa-md flex flex-center"
-    >
-      <q-linear-progress indeterminate color="pink" />
-    </div>
+    <linear-loading :isFetching="isFetching" />
     <todo-item
       v-for="todo in data"
       :key="todo._id.toString()"
