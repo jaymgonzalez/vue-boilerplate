@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, type AxiosResponse } from 'axios'
 import type { ErrorResponse, Todo, TodoWithId } from '../types'
 
 const api = axios.create({
@@ -7,15 +7,20 @@ const api = axios.create({
 
 export type APIError = AxiosError<ErrorResponse>
 
-export async function findAll() {
-  const { data } = await api.get<TodoWithId[]>('/todos')
-  // eslint-disable-next-line no-promise-executor-return
+async function extractData<T>(promise: Promise<AxiosResponse<T>>) {
+  const { data } = await promise
   await new Promise((resolve) => setTimeout(resolve, 3000))
   return data
 }
 
+export async function findAll() {
+  return extractData(api.get<TodoWithId[]>('/todos'))
+}
+
 export async function createOne(todo: Todo) {
-  const { data } = await api.post<TodoWithId>('/todos', todo)
-  await new Promise((resolve) => setTimeout(resolve, 3000))
-  return data
+  return extractData(api.post<TodoWithId>('/todos', todo))
+}
+
+export async function findOne(id: string) {
+  return extractData(api.get<TodoWithId>(`/todos/${id}`))
 }
