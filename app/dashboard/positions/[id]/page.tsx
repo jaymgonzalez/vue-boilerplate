@@ -10,7 +10,7 @@ export default async function PositionDetailPage({
   const { id } = await params
   const supabase = await createClient()
   const { data: trade } = await supabase
-    .from('consolidated_trades')
+    .from('positions')
     .select('*')
     .eq('id', id)
     .single()

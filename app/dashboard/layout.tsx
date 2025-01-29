@@ -1,12 +1,24 @@
 import Navbar from '@/components/navbar'
 import LeftSidebar from '@/components/left-sidebar'
 import { ReactNode } from 'react'
+import { createClient } from '@/utils/supabase/server'
+import { redirect } from 'next/navigation'
 
 export default async function DashboardLayout({
   children,
 }: {
   children: ReactNode
 }) {
+  const supabase = await createClient()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/sign-in')
+  }
+
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -19,7 +31,6 @@ export default async function DashboardLayout({
           <Navbar />
           {children}
         </div>
-
         <LeftSidebar />
       </div>
     </div>

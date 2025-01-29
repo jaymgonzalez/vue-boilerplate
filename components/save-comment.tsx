@@ -74,7 +74,7 @@ export function TradeCommentInput({
 
   return (
     <div>
-      <fieldset className="fieldset flex items-center gap-2">
+      <fieldset className="fieldset flex items-center gap-8">
         {/* <legend className="fieldset-legend">Comments</legend> */}
         <textarea
           className="textarea textarea-bordered flex-grow placeholder-gray-600"
